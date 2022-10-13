@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+p {
+    text-align: center;
+}
+
+.example-card-focus {
+    background-color: rgb(186, 193, 193)
+}
+
+.favorite {
+    background-color: black;
+    color: yellow;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    
+}
+
+.quote-container {
+    height: 50%;
+    width: 100%;
+    background-size: cover;
+    position: relative;
+}
+

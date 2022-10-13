@@ -1,0 +1,67 @@
+<div class="search-container ">
+  <h2> These were the most shocking deaths of the series.</h2>
+  <div>
+    <button (click)="mostrar()" class="search-boton" >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <br>
+</div>
+
+
+<div class="search" *ngIf="search">
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Get individual death information</mat-label>
+      <textarea matInput placeholder="Ex. Walter White" (input)="onSearch()" [(ngModel)]="idDeath"></textarea>
+      
+    </mat-form-field>
+    <label>{{deathNotFound}}</label>
+
+  
+</div>
+
+
+<div class="center" *ngIf=" death$ | async as death">
+
+  <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+
+    <mat-card appFocus class="example-card" *ngFor="let item of death">
+
+      <mat-card-header>
+        <mat-card-title>{{item.death}}</mat-card-title>
+      </mat-card-header>
+
+
+      <mat-card-content>
+
+        <mat-list>
+
+          <mat-list-item>
+            <label>Cause: {{item.cause}}</label>
+          </mat-list-item>
+
+          <mat-list-item>
+            <label>Responsible: {{item.responsible}}</label>
+          </mat-list-item>
+
+          <mat-list-item>
+
+            <div mat-line>Season: {{item.season}}</div>
+          </mat-list-item>
+
+          <mat-list-item>
+
+            <div mat-line>Episode: {{item.episode}}</div>
+          </mat-list-item>
+
+        </mat-list>
+      </mat-card-content>
+
+
+    </mat-card>
+  </div>
+</div>
+
+

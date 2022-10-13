@@ -1,0 +1,48 @@
+<div class="search-container ">
+  <h2> These best quote of the series.</h2>
+  <div>
+    <button (click)="mostrar()" class="search-boton" >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <br>
+</div>
+
+
+<div class="search" *ngIf="search">
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Get quote by author</mat-label>
+      <textarea matInput placeholder="Ex. Jesse Pinkman" (input)="onSearch()" [(ngModel)]="idQuote"></textarea>
+      
+    </mat-form-field>
+    <label>{{QuotehNotFound}}</label>
+
+  
+</div>
+
+
+
+
+
+
+<div  *ngIf=" quote$ | async as quote">
+     <div  *ngFor="let item of quote">
+
+      <div appFocus class="quote-container">
+        <div >
+          <button  (click)="addQuote(item.quote_id)" class="favorite">
+              <mat-icon *ngIf="!apiServices.checkQuote(item.quote_id)">star_border</mat-icon>
+              <mat-icon *ngIf="apiServices.checkQuote(item.quote_id)">star</mat-icon>
+            </button> 
+            <br>
+      </div>
+      <br>
+        <h1> "{{item.quote}}"</h1>
+        <p>{{item.author}}</p>
+      </div>
+       <br>
+       <mat-divider></mat-divider>
+    </div>
+  </div>

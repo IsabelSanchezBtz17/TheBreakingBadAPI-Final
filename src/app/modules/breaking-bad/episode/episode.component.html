@@ -1,0 +1,61 @@
+
+    <div class="search-container ">
+      <h2> Series episodes</h2>
+      <div>
+        <button (click)="mostrar()" class="search-boton" >
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <br>
+    </div>
+    
+    
+    <div class="search" *ngIf="search">
+    
+    
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Search episode by id</mat-label>
+          <textarea matInput placeholder="Ex. 5" (input)="onSearch()" [(ngModel)]="idEpisode"></textarea>
+          
+        </mat-form-field>
+        <label>{{episodeNotFound}}</label>
+    
+      
+    </div>
+	
+	
+	 <div class="center" *ngIf=" episode$ | async as episode">
+
+        <div class="example-sidenav-content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+      
+          <mat-card appFocus class="example-card" *ngFor="let item of episode">
+      
+            <mat-card-header>
+              <mat-card-title>Episode {{item.episode_id}}. {{item.title}}</mat-card-title>
+              <mat-divider></mat-divider>
+
+            </mat-card-header>
+            <mat-card-content>
+              <label>Season: {{item.season}}</label>
+              <br>
+              <label>Air date: {{item.air_date | date}}</label>
+              <br>
+              <label>characters:</label>
+              <mat-list *ngFor="let character of item.characters">
+       
+                <mat-list-item>
+                  <mat-icon mat-list-icon>person_outline</mat-icon>
+                  <div mat-line>{{character}}</div>
+                </mat-list-item>
+                
+            
+              </mat-list>
+      
+            </mat-card-content>
+         
+
+      
+          </mat-card>
+        </div>
+      </div>
+	  

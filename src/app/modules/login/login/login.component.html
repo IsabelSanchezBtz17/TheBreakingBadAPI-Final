@@ -1,0 +1,46 @@
+
+<div id="contenedor">
+            
+    <div id="contenedorcentrado">
+        <div id="login">
+
+            <form class="form" [formGroup]="formLogin" (submit)="onSubmit()">
+   
+                <div>
+                    <input class="inputText" type="text" name="username" id="username" formControlName="username" placeholder="Username" autofocus="1">
+                    <br>
+                    <label  *ngIf="formLogin.get('username')?.errors && formLogin.get('username')?.touched && formLogin.get('username')?.dirty">required field</label>
+        
+                </div>
+        
+                <br>
+        
+                <div>
+                    <input class="inputText" type="password" name="password" id="password" formControlName="password" placeholder="Password" autofocus="1">
+                    <br>
+                    <label *ngIf="formLogin.get('password')?.errors && formLogin.get('password')?.touched && formLogin.get('password')?.dirty"> required field </label>
+        
+                </div>
+        
+                <br>
+                <div class="center">
+                    <button  [disabled]="formLogin.invalid && formLogin.dirty" role="submit" type="submit">login</button>
+                </div>
+                <label *ngIf="flag">Username and/or password are incorrect</label>
+            </form>
+
+
+
+
+
+
+
+            
+        </div>
+        <div id="derecho">
+            <div class="titulo">
+                The Breaking Bad API
+            </div>
+        </div>
+    </div>
+</div>
