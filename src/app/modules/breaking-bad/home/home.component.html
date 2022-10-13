@@ -1,48 +1,80 @@
-<p>
-  <mat-toolbar>
-    <span>The Breaking Bad API </span>
+<div class="home-container">
+  <p>
+    <mat-toolbar>
+      <span>The Breaking Bad API </span>
+  
+  
+      <span class="example-spacer"></span>
+  
+      <div class="example-button-container">
+        <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/character" (click)="ocultar()">
+          <mat-icon>person</mat-icon>
+          <p>Character</p>
+        </button>
+      </div>
+  
+  
+      <div class="example-button-container">
+        <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/episode" (click)="ocultar()">
+          <mat-icon>personal_video</mat-icon>
+          <p>Episode</p>
+        </button>
+      </div>
+  
+  
+  
+      <div class="example-button-container">
+        <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/quote" (click)="ocultar()">
+          <mat-icon>local_library</mat-icon>
+          <p>Quote</p>
+        </button>
+      </div>
+  
+      <div class="example-button-container">
+        <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/death" (click)="ocultar()">
+          <mat-icon>healing</mat-icon>
+          <p>Death</p>
+        </button>
+      </div>
+  
+      <div class="example-button-container">
+        <button mat-icon-button routerLink="/login"  (click)="logout()">
+          <p>Logout</p>
+        </button>
+      </div>
+  
+    </mat-toolbar>
+  </p>
+  
+  <div *ngIf="flag">
+    <div  *ngIf=" quote$ | async as quote">
+      <div  *ngFor="let item of quote">
+  <h4>The Breaking Bad API is a collection of information on the Vince Gilligan series
+     Breaking Bad, as well as his incredible spin-off Better Call Saul. This site is designed
+      to make it easy on the developer to see what HTTP requests are possible, and what information is available.</h4>
+  
+      <ul>
+        <p>The following information is provided through this API...</p>
+        <li >Characters</li>
+        <li >Episodes</li>
+        <li >Quotes</li>
+        <li >Deaths</li></ul>
+  
+       <div  class="quote-container">
+  
+  
+         <h1> "{{item.quote}}"</h1>
+         <p>{{item.author}}</p>
+       </div>
+  
+     </div>
+   </div>
+  
+  </div>
+  
+  <div class="container">
+    <router-outlet></router-outlet> 
+  </div>
+  
 
-
-    <span class="example-spacer"></span>
-
-    <div class="example-button-container">
-      <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/character">
-        <mat-icon>person</mat-icon>
-        <p>Character</p>
-      </button>
-    </div>
-
-
-    <div class="example-button-container">
-      <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/episode">
-        <mat-icon>personal_video</mat-icon>
-        <p>Episode</p>
-      </button>
-    </div>
-
-
-
-    <div class="example-button-container">
-      <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/quote">
-        <mat-icon>local_library</mat-icon>
-        <p>Quote</p>
-      </button>
-    </div>
-
-    <div class="example-button-container">
-      <button mat-icon-button class="example-icon favorite-icon" routerLink="/home/death">
-        <mat-icon>healing</mat-icon>
-        <p>Death</p>
-      </button>
-    </div>
-
-    <div class="example-button-container">
-      <button mat-icon-button  routerLink="/login">
-        <p>Logout</p>
-      </button>
-    </div>
-
-  </mat-toolbar>
-</p>
-
-<router-outlet></router-outlet>
+</div>

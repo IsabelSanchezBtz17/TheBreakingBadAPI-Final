@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Constants } from './libs/constants.class';
+import StorageHelper from './libs/helpers/storage.helper';
 import { ApiService } from './services/api.service';
 
 @Component({
@@ -14,11 +17,17 @@ export class AppComponent implements OnInit, OnDestroy {
   public mediaSub!: Subscription;
   public deviceXs!: boolean;
 
-  constructor(public mediaObserver: MediaObserver, public apiService: ApiService) {
+  constructor(public mediaObserver: MediaObserver, public apiService: ApiService, private router: Router,) {
 
   }
   
   ngOnInit()   {
+    console.log('Inicio1', StorageHelper.getItem(Constants.auth))
+  
+    if (Boolean(StorageHelper.getItem(Constants.auth))==true){
+      console.log('Inicio2', StorageHelper.getItem(Constants.auth))
+      this.router.navigate(['home'])}
+
       this.mediaSub = this.mediaObserver
         .asObservable()
         .subscribe((change) => {

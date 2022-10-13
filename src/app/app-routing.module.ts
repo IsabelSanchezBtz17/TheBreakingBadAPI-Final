@@ -19,8 +19,6 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./modules/breaking-bad/breaking-bad.module').then(m => m.BreakingBadModule), 
-
-
   },
   {
     path: '**',

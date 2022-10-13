@@ -1,43 +1,51 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Constants } from '../libs/constants.class';
+import StorageHelper from '../libs/helpers/storage.helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public auth: boolean= false;
-  public usuario: string = '';
-  public password: string = '';
-  public token: string= '';
 
-  constructor() { }
-
-  login( ){
-    this.auth= true;
-    localStorage.setItem('seccion', this.auth.toString());
-    
-  }
-
-  logout(){
-    
-    this.auth= false;
-    localStorage.clear();
-  }
   
+  constructor(private http: HttpClient) { }
 
+ 
 
-    getToken(username: string, password: string ){
-      this.token= '';
-      if (username === 'admin' && password ==='admin'){
-        this.login();
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        this.token='417b72a14eef2ebe72be5e7c60ef2b65'
-         return ''
-      }
-      return 'Datos incorrectos'
+  checkStatus(): boolean {
+    console.log("Valor real", StorageHelper.getItem(Constants.auth))
+    if (StorageHelper.getItem(Constants.auth) == 'true') {
+      console.log('ESta en una seccion ')
+      return true
     }
+    return false
 
-   
+  }
+
+
+
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(Constants.url + 'api/login', {
+      username,
+      password
+    });
+
+
+  }
+
+  logout() {
+    StorageHelper.setItem(Constants.auth, false)
+  }
+
+  loginT(username: string, password: string){
+    if(username==='Isobel03'&& password==="172316"){
+      StorageHelper.setItem(Constants.auth, true)
+    }
+  }
+
+
 
 }

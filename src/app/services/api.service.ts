@@ -12,16 +12,13 @@ import { Character } from '../models/character.model';
 export class ApiService {
 
   public deviceXs!: boolean;
+  public auth: boolean= false;
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
-   console.log(username, password)
-    return this.http.post(Constants.url + 'api/login', {
-      username,
-      password
-    });
-  }
+
+
+
 
   refreshToken() {
     return this.http.post(Constants.url + 'api/refresh', {
@@ -58,7 +55,7 @@ export class ApiService {
   }
 
 
-  searchT(endpoints: string): Observable<any> {
+  search(endpoints: string): Observable<any> {
     console.log(endpoints)
     return this.http.post(Constants.url + 'mirror/breakingbad',
       {
@@ -69,7 +66,7 @@ export class ApiService {
   }
 
 
-  search(endpoints: string): Observable<any>{
+  searchR(endpoints: string): Observable<any>{
     return this.http.get('https://www.breakingbadapi.com/api/'+ endpoints )
 
   }

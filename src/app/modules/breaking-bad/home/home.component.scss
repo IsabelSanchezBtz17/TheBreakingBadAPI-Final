@@ -6,3 +6,17 @@
   justify-content: center;
   width: 120px;
 }
+
+.quote-container{
+  text-align: center;
+    margin: 10%;
+}
+
+.home-container{
+  height: 100vh;
+  overflow: hidden;
+}
+.container{
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+}

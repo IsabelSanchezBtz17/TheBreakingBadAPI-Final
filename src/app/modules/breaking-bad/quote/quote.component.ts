@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable, tap } from 'rxjs';
-import { Character } from 'src/app/models/character.model';
 import { Quote } from 'src/app/models/quotes.model';
 
 @Component({

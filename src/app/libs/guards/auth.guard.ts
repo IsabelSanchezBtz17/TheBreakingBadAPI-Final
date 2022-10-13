@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import StorageHelper from '../helpers/storage.helper';
+import { Constants } from 'src/app/libs/constants.class';
 
 @Injectable({
   providedIn: 'root'
@@ -9,31 +11,30 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AuthGuard implements CanLoad, CanActivate {
 
   constructor(public authService: AuthService, private router: Router){
-    console.group('servicio', this.authService);
-
   }
  
-  checkStatus() : boolean{
-  return this.authService.auth;
- }
 
 
 canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean  {
-
-   if (this.checkStatus()===false){
-    this.router.navigate(['login'])
-   }
-
-   return this.checkStatus();
+      console.log('A', this.authService.checkStatus())
+   return Boolean(StorageHelper.getItem(Constants.auth))
  
   }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> |  Promise<boolean> | boolean {  
-    return this.authService.auth;
+    
+      if (Boolean(StorageHelper.getItem(Constants.auth))==true){
+        console.log('L', this.authService.checkStatus())
+        this.router.navigate(['home'])}
+      
+        
+
+    return this.authService.checkStatus()
+ 
   }
 }
 

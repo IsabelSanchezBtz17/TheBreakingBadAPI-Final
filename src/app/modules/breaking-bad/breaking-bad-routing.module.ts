@@ -10,7 +10,7 @@ import { QuoteComponent } from './quote/quote.component';
 const routes: Routes = [
   {
     path:'',
-    component: HomeComponent, 
+    component:HomeComponent, 
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
     children: [
